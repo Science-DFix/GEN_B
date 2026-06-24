@@ -96,13 +96,20 @@ Consulte [`invariant/README.md`](invariant/README.md).
 
 ### 3. Pré-processar as perturbações
 
+Executar os scripts **individualmente e em ordem**, verificando as saídas a cada etapa:
+
 ```bash
 cd GERA_B/prep/
-# editar LABELI, LABELF e REF_FILE em run_prep_pipeline.bash
-bash run_prep_pipeline.bash
+bash 1_generate_ESMF_weights.bash        # pesos de interpolação (apenas uma vez)
+bash 2_generate_template_PTB.bash        # template estrutural (apenas uma vez)
+bash 3_convert_uv_to_psichi.bash 24      # U/V → ψ/χ para f24
+bash 3_convert_uv_to_psichi.bash 48      # U/V → ψ/χ para f48
+bash 4_add_variables.bash 24             # adiciona T, q, ps ao f24 (submete PBS)
+bash 4_add_variables.bash 48             # adiciona T, q, ps ao f48 (submete PBS)
+bash 5_ncdiff.bash                       # PTB = f48 − f24 (submete PBS)
 ```
 
-Consulte [`GERA_B/prep/README.md`](GERA_B/prep/README.md).
+Consulte [`GERA_B/prep/README.md`](GERA_B/prep/README.md) para detalhes de cada script.
 
 ### 4. Calibrar a matriz B
 
