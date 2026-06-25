@@ -23,6 +23,16 @@ O fluxo completo envolve três etapas principais, executadas nesta ordem:
 
 ```
 GEN_B/
+├── FILE_BASE/          # Namelists e streams base usados pelos scripts
+│   ├── README.md
+│   ├── namelist.wps
+│   ├── namelist.init_atmosphere
+│   ├── streams.init_atmosphere
+│   └── core_atmosphere/
+│       ├── namelist.atmosphere
+│       ├── streams.atmosphere
+│       └── stream_list.atmosphere.*
+│
 ├── RUN_MODEL/          # Download GFS e rodadas MPAS-A (Init + Forecast)
 │   ├── README.md
 │   ├── baixa_gfs_global.bash
